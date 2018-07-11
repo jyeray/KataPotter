@@ -19,8 +19,8 @@ describe('library', () => {
         expect(Library().buy([Book(1), Book(2)])).toBe(15.2);
     });
 
-    it('when you buy three identical books', () => {
-        expect(Library().buy([Book(1), Book(1), Book(1)])).toBe(21.6);
+    it('when you buy three differents books', () => {
+        expect(Library().buy([Book(1), Book(2), Book(4)])).toBe(21.6);
     });
 }) 
 
