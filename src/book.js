@@ -1,3 +1,4 @@
-module.exports = function Book () {
-    return {}
+module.exports = function Book (id) {
+    
+    return { id }
 }
