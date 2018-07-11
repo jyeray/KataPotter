@@ -4,7 +4,8 @@ module.exports = function Library() {
         1: 0,
         2: 0.05,
         3: 0.10,
-        4: 0.2
+        4: 0.2,
+        5: 0.25
     }
     function buy(books) {        
         return books.length * 8 * (1 - getDiscount(books));
