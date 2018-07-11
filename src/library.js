@@ -7,17 +7,24 @@ module.exports = function Library() {
         4: 0.2,
         5: 0.25
     }
-    function buy(books) {        
-        return books.length * 8 * (1 - getDiscount(books));
-    }
-    
-    function getDiscount(books) {
-        const numberOfBooks = books.reduce((acc, book) => {
+    function buy(books) {
+        const booksGroupedById = books.reduce((acc, book) => {
             const id = book.id;
-            acc[id] = acc.id + 1;
+            const value = acc[id] || 0
+            acc[id] = value + 1;
             return acc;
         }, {});
-        return discountsForBooks[Object.keys(numberOfBooks).length];
+
+        return getNumberOfDiferentBooks(booksGroupedById) * 8 * (1 - getDiferentBooksDiscount(booksGroupedById)) + 
+        (books.length - getNumberOfDiferentBooks(booksGroupedById)) * 8;
+    }
+    
+    function getDiferentBooksDiscount(booksGroupedById) {
+        return discountsForBooks[getNumberOfDiferentBooks(booksGroupedById)];
+    }
+
+    function getNumberOfDiferentBooks(booksGroupedById){
+        return Object.keys(booksGroupedById).length;
     }
     
     return {
