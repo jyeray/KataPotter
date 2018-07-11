@@ -4,9 +4,9 @@ const Book = require("../src/book")
 describe('library', () => {
 
     it('when you buy zero books', () => {
-        expect(Library().buy()).toBe(0);
+        expect(Library().buy([])).toBe(0);
     });
     it('when you buy one book', () => {
-        expect(Library().buy()).toBe();
+        expect(Library().buy([Book()])).toBe(8);
     });
 }) 

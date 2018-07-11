@@ -1,6 +1,6 @@
 module.exports = function Library() {
     function buy(books) {
-        return 0;
+        return books.length * 8;
     }
 
     return {
