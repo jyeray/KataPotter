@@ -15,10 +15,22 @@ module.exports = function Library() {
             return acc;
         }, {});
 
-        return getNumberOfDiferentBooks(booksGroupedById) * 8 * (1 - getDiferentBooksDiscount(booksGroupedById)) + 
-        (books.length - getNumberOfDiferentBooks(booksGroupedById)) * 8;
+        let totalAmount = 0;
+        let booksWithDiscount
+
+        while (Object.values(booksGroupedById).filter(x => x > 0).length > 0) {
+            booksWithDiscount = 0;
+            Object.keys(booksGroupedById).forEach(bookId => {
+                if (booksGroupedById[bookId] > 0) {
+                    booksWithDiscount++;
+                    booksGroupedById[bookId] = booksGroupedById[bookId] - 1;
+                }
+            });
+            totalAmount += booksWithDiscount * 8 * (1 - discountsForBooks[booksWithDiscount])
+        }
+        return totalAmount;
     }
-    
+
     function getDiferentBooksDiscount(booksGroupedById) {
         return discountsForBooks[getNumberOfDiferentBooks(booksGroupedById)];
     }
@@ -26,7 +38,7 @@ module.exports = function Library() {
     function getNumberOfDiferentBooks(booksGroupedById){
         return Object.keys(booksGroupedById).length;
     }
-    
+
     return {
         buy
     }
