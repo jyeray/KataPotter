@@ -1,5 +1,5 @@
-const Library = require("../src/library")
-const Book = require("../src/book")
+import Book from '../src/book'
+import Library from '../src/library'
 
 describe('library', () => {
 

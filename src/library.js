@@ -1,4 +1,4 @@
-module.exports = function Library() {
+export default function Library() {
     const discountsForBooks = {
         0: 0,
         1: 0,

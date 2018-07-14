@@ -1,4 +1,3 @@
-module.exports = function Book (id) {
-    
+export default function Book (id) {
     return { id }
 }
