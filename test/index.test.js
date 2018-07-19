@@ -38,5 +38,24 @@ describe('library', () => {
     it('when you buy two different books two times', () => {
         expect(Library().buy([Book(1), Book(2), Book(1), Book(2)])).toBe(30.4);
     });
-})
 
+    describe('test from kata', () => {
+        it('with several discounts', () => {
+            expect(Library().buy([Book(1), Book(1), Book(2)])).toBe(23.2);
+            expect(Library().buy([Book(1), Book(1), Book(2), Book(2)])).toBe(30.4);
+            expect(Library().buy([Book(1), Book(1), Book(2), Book(2), Book(3), Book(4)])).toBe(40.8);
+            expect(Library().buy([Book(1), Book(5), Book(2), Book(2), Book(3), Book(4)])).toBe(38);
+        })
+
+        it('edge cases', () => {
+            expect(Library().buy([Book(0), Book(0), Book(1), Book(1), Book(2), Book(2), Book(3), Book(4)])).toBe(51.2);
+            expect(Library().buy([
+                Book(0), Book(0), Book(0), Book(0), Book(0),
+                Book(1), Book(1), Book(1), Book(1), Book(1),
+                Book(2), Book(2), Book(2), Book(2),
+                Book(3), Book(3), Book(3), Book(3), Book(3),
+                Book(4), Book(4), Book(4), Book(4)
+            ])).toBe(141.2);
+        })
+    })
+})
